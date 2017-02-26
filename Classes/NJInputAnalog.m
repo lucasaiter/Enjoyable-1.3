@@ -33,7 +33,7 @@ static float normalize(CFIndex p, CFIndex min, CFIndex max) {
                                                    parent:self]];
         _rawMax = IOHIDElementGetPhysicalMax(element);
         _rawMin = IOHIDElementGetPhysicalMin(element);
-        _deadZone = 1.0f / (float) (_rawMax - _rawMin);
+        _deadZone = 0.25f; // (1.0f / (float) (_rawMax - _rawMin)) * 10.0f;
     }
     return self;
 }
@@ -50,8 +50,10 @@ static float normalize(CFIndex p, CFIndex min, CFIndex max) {
 
 - (void)notifyEvent:(IOHIDValueRef)value {
     float magnitude = self.magnitude = normalize(IOHIDValueGetIntegerValue(value), _rawMin, _rawMax);
-    if (fabsf(magnitude) < _deadZone)
+    if (fabsf(magnitude) < _deadZone) {
         magnitude = self.magnitude = 0;
+    }
+
     [self.children[0] setMagnitude:fabsf(MIN(magnitude, 0))];
     [self.children[1] setMagnitude:fabsf(MAX(magnitude, 0))];
     [self.children[0] setActive:magnitude < -_deadZone];
