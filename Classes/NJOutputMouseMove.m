@@ -120,16 +120,16 @@ static CGFloat pointRectSquaredDistance(NSPoint p, NSRect r) {
 
     switch (_axis) {
         case 0:
-            mouseLoc.x = NSMidX(frame) - (NSWidth(frame) * self.magnitude * 0.5);
+            mouseLoc.x = NSMidX(frame) - (NSWidth(frame) * self.magnitude * 0.5 * (self.speed / 20.f));
             break;
         case 1:
-            mouseLoc.x = NSMidX(frame) + (NSWidth(frame) * self.magnitude * 0.5);
+            mouseLoc.x = NSMidX(frame) + (NSWidth(frame) * self.magnitude * 0.5 * (self.speed / 20.f));
             break;
         case 2:
-            mouseLoc.y = NSMidY(frame) - (NSHeight(frame) * self.magnitude * 0.5);
+            mouseLoc.y = NSMidY(frame) - (NSHeight(frame) * self.magnitude * 0.5 * (self.speed / 20.f));
             break;
         case 3:
-            mouseLoc.y = NSMidY(frame) + (NSHeight(frame) * self.magnitude * 0.5);
+            mouseLoc.y = NSMidY(frame) + (NSHeight(frame) * self.magnitude * 0.5 * (self.speed / 20.f));
             break;
     }
 
@@ -142,15 +142,21 @@ static CGFloat pointRectSquaredDistance(NSPoint p, NSRect r) {
 
 - (BOOL)update:(NJInputController *)ic {
 
+    if (self.magnitude < 0.05) {
+        if (self.inDeadZone) {
+            return NO; // dead zone
+        }
+        self.inDeadZone = YES;
+        self.magnitude = 0;
+    } else {
+        self.inDeadZone = NO;
+    }
+
     NSPoint start = ic.mouseLoc;
     NSPoint mouseLoc;
     if (self.set) {
-        if (self.magnitude == 0)
-            return NO;
         mouseLoc = [self setMouseFrom:start];
     } else {
-        if (self.magnitude < 0.05)
-            return NO; // dead zone
         mouseLoc = [self moveMouseFrom:start];
     }
     ic.mouseLoc = mouseLoc;
