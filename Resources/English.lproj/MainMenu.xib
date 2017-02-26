@@ -368,9 +368,9 @@ Switch back to re-enable input.</string>
                                 </buttonCell>
                             </button>
                             <button misplaced="YES" id="0xe-u6-gzf">
-                                <rect key="frame" x="343" y="117" width="70" height="18"/>
+                                <rect key="frame" x="343" y="117" width="78" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Set" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wYf-qJ-FLn">
+                                <buttonCell key="cell" type="check" title="Centered" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wYf-qJ-FLn">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
