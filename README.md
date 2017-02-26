@@ -22,8 +22,8 @@ and [Sam McCall](http://abstractable.net/enjoy/).
 
 Added in 1.3 is support for a "centered" mode for mouse move.
 
-In this mode, rather than nudging the mouse position left/right/up/down, the position an analog input
-is used to set the absolute position of the mouse as a deviation from the centre of the screen. The further
+In this mode, rather than nudging the mouse position left/right/up/down, tan analog input can be
+used to set the absolute location of the mouse as a deviation from the centre of the screen. The further
 the analog input is from the neutral point, the further away from the centre of the screen the mouse
 gets placed. 
 
