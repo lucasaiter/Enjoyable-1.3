@@ -253,11 +253,11 @@
     NSInteger idx = [userInfo[@"index"] intValue];
     [alert.window orderOut:nil];
     switch (returnCode) {
-        case NSAlertFirstButtonReturn: // Merge
+        case 1000: // Merge
             [self.ic mergeMapping:newMapping intoMapping:oldMapping];
             [self.ic activateMapping:oldMapping];
             break;
-        case NSAlertThirdButtonReturn: // New Mapping
+        case 1002: // New Mapping
             [self.mvc beginUpdates];
             [self.ic addMapping:newMapping];
             [self.mvc addedMappingAtIndex:idx startEditing:YES];
