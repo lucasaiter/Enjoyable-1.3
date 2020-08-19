@@ -15,7 +15,7 @@
 
 + (NSTimeInterval)doubleClickInterval {
     static NSTimeInterval s_doubleClickThreshold;
-    if (s_doubleClickThreshold == 0) {
+    if (!((bool) (int) s_doubleClickThreshold)) {
         s_doubleClickThreshold = [[NSUserDefaults.standardUserDefaults
                                  objectForKey:@"com.apple.mouse.doubleClickThreshold"] floatValue];
         if (s_doubleClickThreshold <= 0)

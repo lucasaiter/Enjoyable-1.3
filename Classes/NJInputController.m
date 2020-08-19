@@ -126,7 +126,7 @@ static CVReturn _updateDL(CVDisplayLinkRef displayLink,
         NJOutput *output = self.currentMapping[subInput];
         output.magnitude = subInput.magnitude;
         output.running = subInput.active;
-        if ((output.running || output.magnitude != 0) && output.isContinuous)
+        if ((output.running || ((bool) (int)output.magnitude) ) && output.isContinuous)
             [self addRunningOutput:output];
     }
 }
